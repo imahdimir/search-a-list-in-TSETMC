@@ -8,7 +8,7 @@ from mirutil.funcs import read_data_according_to_type as rdata
 
 ifp = 'list.xlsx'
 
-id2t_rp_url = 'https://github.com/imahdimir/d-TSETMC_ID-2-Ticker-map'
+id2t_rp_url = 'https://github.com/imahdimir/d-TSETMC-ID-2-Ticker-map'
 
 cur_rp_url = 'https://github.com/imahdimir/search-a-list-in-TSETMC'
 
@@ -83,7 +83,7 @@ def main() :
   dfm = dfm.set_index(tid)
 
   ##
-  mf.save_as_prq_wo_index(dfm , dfmp)
+  dfm.to_parquet(dfmp)
 
   ##
   msg = 'added by searching a list'
