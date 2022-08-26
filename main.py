@@ -3,31 +3,19 @@
 import pandas as pd
 from githubdata import GithubData
 from mirutil import funcs as mf
+from mirutil.funcs import read_data_according_to_type as rdata
 
 
 ifp = 'list.xlsx'
 
-t2b_rp_url = 'https://github.com/imahdimir/d-Ticker-2-BaseTicker-map'
-c2b_rp_url = 'https://github.com/imahdimir/d-CodalTicker-2-BaseTicker-map'
-bt_rp_url = 'https://github.com/imahdimir/d-uniq-BaseTickers'
 id2t_rp_url = 'https://github.com/imahdimir/d-TSETMC_ID-2-Ticker-map'
 
-cur_rp_url = ''
+cur_rp_url = 'https://github.com/imahdimir/search-a-list-in-TSETMC'
 
-tran = 'TracingNo'
-codtic = 'CodalTicker'
-cname = 'CompanyName'
-ltrcod = 'LetterCode'
-title = 'Title'
-pjdt = 'PublishDateTime'
-isest = 'IsEstimate'
 tic = 'Ticker'
 tid = 'TSETMC_ID'
-btic = 'BaseTicker'
 ticn = 'TickerN'
-
 srch = 'srch'
-
 idcols = {
     'ID-1' : 1 ,
     'ID-2' : 2 ,
@@ -56,6 +44,9 @@ def main() :
 
   ##
   mf.save_as_prq_wo_index(dfs , 'temp.prq')
+
+  ##
+  dfs = rdata('temp.prq')
 
   ##
   idf = pd.DataFrame()
@@ -95,13 +86,14 @@ def main() :
   mf.save_as_prq_wo_index(dfm , dfmp)
 
   ##
-  id2t_rp.rmdir()
-
-  ##
   msg = 'added by searching a list'
-  msg += 'by: ' +
+  msg += 'by: ' + cur_rp_url
+
+  id2t_rp.commit_push(msg)
 
   ##
+
+  id2t_rp.rmdir()
 
 
 ##
